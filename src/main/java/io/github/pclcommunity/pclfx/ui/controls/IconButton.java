@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
-import org.jetbrains.annotations.NotNull;
 
 public class IconButton extends Button {
     public IconButton(String svgContent) {
@@ -34,7 +33,7 @@ public class IconButton extends Button {
         });
     }
 
-    private @NotNull ObjectProperty<Color> getColorObjectProperty() {
+    private ObjectProperty<Color> getColorObjectProperty() {
         final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(Color.TRANSPARENT);
         backgroundColor.addListener((obs, oldColor, newColor) -> {
             String style = String.format("-fx-background-color: rgba(%d, %d, %d, %f);", (int) (newColor.getRed() * 255), (int) (newColor.getGreen() * 255), (int) (newColor.getBlue() * 255), newColor.getOpacity());

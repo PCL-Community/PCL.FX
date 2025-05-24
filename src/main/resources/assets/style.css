@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'PCL';
+    src: url('/assets/Font.ttf');
+}
+
+.root {
+    -fx-font-family: 'PCL', "Microsoft YaHei UI", "MiSans", "HarmonyOS Sans SC";
+}
+
+.center {
+    -fx-background-color: linear-gradient(from 90.0% 0.0% to 10.0% 100.0%, #b1cfd5ff 0.0%, #cbe1f8ff 40.0%, #c0c5ddff 100.0%);
+}
+
+.title-bar {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #106ac4ff 0.0%, #1277ddff 50.0%, #106ac4ff 100.0%)
+}
+
+.icon-button {
+    -fx-background-radius: 1000;
+    -fx-border-radius: 1000;
+    -fx-background-color: transparent;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+
+}
+
+.icon-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.my-radio .radio {
+    -fx-shape: null;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    visibility: hidden;
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.my-radio {
+    -fx-background-radius: 20px;
+    -fx-padding: 3 14 3 10;
+    -fx-background-color: transparent;
+}
+
+.my-radio .radio-text {
+    -fx-font-size: 12px;
+    -fx-padding: 2 0 0 0;
+}
+
+.title-bar-fx-label {
+    -fx-background-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 20px;
+    -fx-text-fill: #1170D0;
+    -fx-padding: 0 5 0 5;
+}

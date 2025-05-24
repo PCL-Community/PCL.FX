@@ -1,0 +1,28 @@
+.window {
+
+}
+
+.title-bar {
+    -fx-background-color: linear-gradient(to right, #2c3e50, #3498db, #2c3e50);
+}
+
+.center {
+    -fx-background-color: linear-gradient(from 90.0% 0.0% to 10.0% 100.0%, #b1cfd5ff 0.0%, #cbe1f8ff 40.0%, #c0c5ddff 100.0%);
+}
+
+.title-bar {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #106ac4ff 0.0%, #1277ddff 50.0%, #106ac4ff 100.0%)
+}
+
+.icon-button {
+    -fx-background-radius: 1000;
+    -fx-border-radius: 1000;
+    -fx-background-color: transparent;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+
+}
+
+.icon-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}

@@ -13,6 +13,8 @@ import javafx.stage.StageStyle;
 
 public class Controllers {
     private static Stage stage;
+    private static TitleBar titleBar;
+    private static SideBar sideBar;
 
     public static void initialize(Stage primaryStage) {
         stage = primaryStage;
@@ -61,5 +63,15 @@ public class Controllers {
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static TitleBar getTitleBar() {
+        if (titleBar == null) titleBar = new TitleBar();
+        return titleBar;
+    }
+
+    public static SideBar getSideBar() {
+        if (sideBar == null) sideBar = new SideBar();
+        return sideBar;
     }
 }

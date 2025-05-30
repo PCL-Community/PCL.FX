@@ -1,0 +1,7 @@
+.sidebar{
+    -fx-max-width: 200px;
+    -fx-pref-width: 200px;
+    -fx-min-width: 200px;
+    -fx-background-color: #F5F8FC;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.5, 0, 5);
+}

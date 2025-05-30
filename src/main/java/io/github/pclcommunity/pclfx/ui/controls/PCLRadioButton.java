@@ -1,6 +1,7 @@
 package io.github.pclcommunity.pclfx.ui.controls;
 
 import io.github.pclcommunity.pclfx.ui.Icons;
+import io.github.pclcommunity.pclfx.util.Log;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -23,6 +24,7 @@ public class PCLRadioButton extends javafx.scene.control.RadioButton {
     private final ObjectProperty<Color> textColor = new SimpleObjectProperty<>(Color.WHITE);
     private final ObjectProperty<Color> iconColor = new SimpleObjectProperty<>(Color.WHITE);
     private final Node iconNode;
+    private Label label;
     private Color selectedColor = Color.web("#127AE0");
     private Color unselectedColor = Color.WHITE;
 
@@ -58,11 +60,10 @@ public class PCLRadioButton extends javafx.scene.control.RadioButton {
         setupInteractions();
     }
 
-
     private void initComponents(String text) {
         getStyleClass().add("pcl-radio");
 
-        Label label = new Label(text);
+        label = new Label(text);
         label.getStyleClass().add("radio-text");
         label.textFillProperty().bind(textColor);
 
@@ -89,6 +90,7 @@ public class PCLRadioButton extends javafx.scene.control.RadioButton {
 
     private void setupInteractions() {
         selectedProperty().addListener((obs, oldVal, selected) -> {
+            Log.LOGGER.info("单选按钮选择：{}", this);
             updateColors(selected);
             playTransition(selected);
         });
@@ -113,4 +115,11 @@ public class PCLRadioButton extends javafx.scene.control.RadioButton {
     private String toHex(Color color) {
         return String.format("#%02X%02X%02X", (int) (color.getRed() * 255), (int) (color.getGreen() * 255), (int) (color.getBlue() * 255));
     }
+
+
+    @Override
+    public String toString() {
+        return "PCLRadioButton{" + "label=" + label.getText() + '}';
+    }
+
 }

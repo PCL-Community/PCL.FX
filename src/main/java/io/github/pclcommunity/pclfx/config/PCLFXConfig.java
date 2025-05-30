@@ -2,7 +2,7 @@ package io.github.pclcommunity.pclfx.config;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Config {
+public class PCLFXConfig {
     @SerializedName("width")
     public int width = 400;
 

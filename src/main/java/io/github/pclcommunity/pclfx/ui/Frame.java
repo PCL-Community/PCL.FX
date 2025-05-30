@@ -3,16 +3,17 @@ package io.github.pclcommunity.pclfx.ui;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 public class Frame extends BorderPane {
     private final TitleBar titleBar;
 
-    public Frame(Stage stage) {
-        getStylesheets().add("assets/style.css");
+    public Frame() {
+        getStylesheets().add("assets/css/root.css");
+        getStylesheets().add("assets/css/iconbutton.css");
+        getStylesheets().add("assets/css/radio.css");
         getStyleClass().add("window");
 
-        titleBar = new TitleBar(stage);
+        titleBar = new TitleBar();
         setTop(titleBar);
 
         HBox center = new HBox();

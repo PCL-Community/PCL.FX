@@ -10,8 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 
-public class IconButton extends Button {
-    public IconButton(String svgContent) {
+public class PCLIconButton extends Button {
+    public PCLIconButton(String svgContent) {
         getStyleClass().add("icon-button");
         SVGPath svgPath = new SVGPath();
         svgPath.setStroke(Color.WHITE);

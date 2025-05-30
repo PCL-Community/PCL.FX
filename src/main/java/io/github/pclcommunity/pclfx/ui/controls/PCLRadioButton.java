@@ -9,41 +9,58 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 
-public class RadioButton extends javafx.scene.control.RadioButton {
-    private static final Color SELECTED_COLOR = Color.web("#127AE0");
-    private static final Duration TRANSITION_DURATION = Duration.millis(150);
-
+public class PCLRadioButton extends javafx.scene.control.RadioButton {
+    private static final Duration TRANSITION_DURATION = Duration.millis(175);
     private final DoubleProperty backgroundOpacity = new SimpleDoubleProperty(0);
     private final ObjectProperty<Color> textColor = new SimpleObjectProperty<>(Color.WHITE);
     private final ObjectProperty<Color> iconColor = new SimpleObjectProperty<>(Color.WHITE);
     private final Node iconNode;
+    private Color selectedColor = Color.web("#127AE0");
+    private Color unselectedColor = Color.WHITE;
 
-    public RadioButton(String text, Icons icon) {
+    public PCLRadioButton(String text, Icons icon) {
         this.iconNode = icon.toNode();
         initComponents(text);
         setupBindings();
         setupInteractions();
     }
 
-    public RadioButton(String text, Icons icon, double size) {
+    public PCLRadioButton(String text, Icons icon, double size) {
         this.iconNode = icon.toNode(size);
         initComponents(text);
         setupBindings();
         setupInteractions();
     }
 
+    public PCLRadioButton(String text, Icons icon, Color selectedColor, Color unselectedColor) {
+        this.iconNode = icon.toNode();
+        this.selectedColor = selectedColor;
+        this.unselectedColor = unselectedColor;
+        initComponents(text);
+        setupBindings();
+        setupInteractions();
+    }
+
+    public PCLRadioButton(String text, Icons icon, double size, Color selectedColor, Color unselectedColor) {
+        this.iconNode = icon.toNode(size);
+        this.selectedColor = selectedColor;
+        this.unselectedColor = unselectedColor;
+        initComponents(text);
+        setupBindings();
+        setupInteractions();
+    }
+
+
     private void initComponents(String text) {
-        getStyleClass().add("my-radio");
+        getStyleClass().add("pcl-radio");
 
         Label label = new Label(text);
         label.getStyleClass().add("radio-text");
@@ -55,7 +72,7 @@ public class RadioButton extends javafx.scene.control.RadioButton {
     }
 
     private void setupBindings() {
-        SVGPath svgPath = (SVGPath) ((Pane) iconNode).getChildren().getFirst();
+        SVGPath svgPath = (SVGPath) ((StackPane) iconNode).getChildren().getFirst();
         backgroundOpacity.addListener((obs, oldVal, newVal) -> {
             double alpha = newVal.doubleValue();
             String formattedAlpha = String.format("%.10f", alpha);
@@ -83,7 +100,7 @@ public class RadioButton extends javafx.scene.control.RadioButton {
     }
 
     private void updateColors(boolean selected) {
-        Color target = selected ? SELECTED_COLOR : Color.WHITE;
+        Color target = selected ? selectedColor : unselectedColor;
         textColor.set(target);
         iconColor.set(target);
     }

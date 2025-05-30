@@ -1,0 +1,24 @@
+.pcl-radio .radio {
+    -fx-shape: null;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    visibility: hidden;
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.pcl-radio {
+    -fx-background-radius: 20px;
+    -fx-padding: 3 12 3 12;
+    -fx-background-color: transparent;
+}
+
+.pcl-radio .radio-text {
+    -fx-font-size: 12px;
+    -fx-padding: 2 0 0 0;
+}
+

@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'PCL';
+    src: url('/assets/Font.ttf');
+}
+
+.root {
+    -fx-font-family: 'PCL', "Microsoft YaHei UI", "MiSans", "HarmonyOS Sans SC";
+}
+
+.center {
+    -fx-background-color: linear-gradient(from 90.0% 0.0% to 10.0% 100.0%, #b1cfd5ff 0.0%, #cbe1f8ff 40.0%, #c0c5ddff 100.0%);
+}
+
+.title-bar {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #106ac4ff 0.0%, #1277ddff 50.0%, #106ac4ff 100.0%)
+}
+
+.title-bar-logo {
+    -fx-pref-width: 4px;
+    -fx-pref-height: 3px;
+}
+
+.title-bar-fx-label {
+    -fx-background-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #1170D0;
+    -fx-padding: 0 5 0 5;
+}

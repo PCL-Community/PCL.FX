@@ -1,0 +1,12 @@
+.icon-button {
+    -fx-background-radius: 1000;
+    -fx-border-radius: 1000;
+    -fx-background-color: transparent;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+
+}
+
+.icon-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}

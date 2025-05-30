@@ -1,9 +1,8 @@
 package io.github.pclcommunity.pclfx.ui;
 
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
-import io.github.pclcommunity.pclfx.config.Config;
-import io.github.pclcommunity.pclfx.config.ConfigHolder;
-import io.github.pclcommunity.pclfx.util.Log;
+import io.github.pclcommunity.pclfx.config.Configs;
+import io.github.pclcommunity.pclfx.config.PCLFXConfig;
 import javafx.geometry.Insets;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
@@ -13,13 +12,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Controllers {
-    public static Stage stage;
+    private static Stage stage;
 
     public static void initialize(Stage primaryStage) {
-        Log.LOGGER.info("Initializing controllers");
         stage = primaryStage;
 
-        Config config = ConfigHolder.config();
+        PCLFXConfig config = Configs.config();
         stage.setWidth(config.width);
         stage.setHeight(config.height);
 
@@ -27,9 +25,10 @@ public class Controllers {
         stage.setMinHeight(470);
 
         addSizeChangeListener();
+
         stage.setTitle("PCL.FX");
 
-        Frame frame = new Frame(primaryStage);
+        Frame frame = new Frame();
 
         StackPane shadowPane = new StackPane();
         shadowPane.getChildren().add(frame);
@@ -44,22 +43,23 @@ public class Controllers {
         BorderlessScene scene = new BorderlessScene(primaryStage, StageStyle.TRANSPARENT, shadowPane, 810, 470);
         scene.setFill(Color.TRANSPARENT);
         scene.removeDefaultCSS();
-        primaryStage.setScene(scene);
 
-        Log.LOGGER.info("Controllers initialized successfully");
+        primaryStage.setScene(scene);
     }
 
     private static void addSizeChangeListener() {
         stage.widthProperty().addListener((observable, oldValue, newValue) -> {
-            ConfigHolder.config().width = newValue.intValue();
-            ConfigHolder.saveConfig();
-            Log.LOGGER.debug("Window width changed to: {}", newValue);
+            Configs.config().width = newValue.intValue();
+            Configs.saveConfig();
         });
 
         stage.heightProperty().addListener((observable, oldValue, newValue) -> {
-            ConfigHolder.config().height = newValue.intValue();
-            ConfigHolder.saveConfig();
-            Log.LOGGER.debug("Window height changed to: {}", newValue);
+            Configs.config().height = newValue.intValue();
+            Configs.saveConfig();
         });
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 }

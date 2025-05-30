@@ -7,12 +7,10 @@ import javafx.stage.Stage;
 
 public class PCLFxApplication extends Application {
     public static void main(String[] args) {
-        Log.LOGGER.info("Starting application");
         launch(args);
     }
 
     public void start(Stage stage) {
-        Log.LOGGER.debug("Initializing primary stage");
         Controllers.initialize(stage);
         stage.show();
     }

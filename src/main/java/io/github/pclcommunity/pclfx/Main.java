@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
+        System.getProperties().putIfAbsent("javafx.animation.pulse", "120");
+
         Log.init();
 
         Thread.currentThread().setUncaughtExceptionHandler((t, e) ->
@@ -20,11 +22,11 @@ public class Main {
             e.printStackTrace(printWriter);
             JOptionPane.showMessageDialog(null, stringWriter.toString(), "锟斤拷烫烫烫", JOptionPane.ERROR_MESSAGE);
         });
-        Log.LOGGER.info("Java Version：{}", System.getProperty("java.version"));
-        Log.LOGGER.info("Java Vendor：{}", System.getProperty("java.vendor"));
-        Log.LOGGER.info("Java Home: {}", System.getProperty("java.home"));
+        Log.LOGGER.info("Java 版本：{}", System.getProperty("java.version"));
+        Log.LOGGER.info("Java 发行商：{}", System.getProperty("java.vendor"));
+        Log.LOGGER.info("Java 路径: {}", System.getProperty("java.home"));
         try {
-            Log.LOGGER.info("Jar Path：{}", Paths.get(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath());
+            Log.LOGGER.info("Jar 路径：{}", Paths.get(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }

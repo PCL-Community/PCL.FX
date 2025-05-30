@@ -1,13 +1,14 @@
 package io.github.pclcommunity.pclfx.ui;
 
-import io.github.pclcommunity.pclfx.ui.controls.IconButton;
-import io.github.pclcommunity.pclfx.ui.controls.RadioButton;
+import io.github.pclcommunity.pclfx.ui.controls.PCLIconButton;
+import io.github.pclcommunity.pclfx.ui.controls.PCLRadioButton;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.transform.Scale;
@@ -18,8 +19,8 @@ public class TitleBar extends BorderPane {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public TitleBar(Stage stage) {
-        this.stage = stage;
+    public TitleBar() {
+        this.stage = Controllers.getStage();
         initialize();
         setupDragHandlers();
     }
@@ -32,20 +33,20 @@ public class TitleBar extends BorderPane {
         setPrefHeight(45);
         setMinHeight(45);
 
-        SVGPath logo = createLogo();
 
-        Scale scale = new Scale(0.6, 0.6);
-        logo.getTransforms().add(scale);
+        StackPane logo = createLogo();
+
+        logo.getStyleClass().add("title-bar-logo");
 
         Label fxLabel = new Label("FX");
         fxLabel.getStyleClass().add("title-bar-fx-label");
 
         HBox leftContainer = new HBox(0, logo, fxLabel);
 
-        Insets margin = new Insets(14, 0, 0, 25);
-        Insets fxMargin = new Insets(10, 0, 0, -35);
+        Insets logoMargin = new Insets(0, 0, 0, 32);
+        Insets fxMargin = new Insets(12, 0, 0, 25);
 
-        HBox.setMargin(logo, margin);
+        HBox.setMargin(logo, logoMargin);
         HBox.setMargin(fxLabel, fxMargin);
 
         setLeft(leftContainer);
@@ -70,10 +71,10 @@ public class TitleBar extends BorderPane {
 
         ToggleGroup group = new ToggleGroup();
 
-        RadioButton launchButton = new RadioButton("启动", Icons.POWER);
-        RadioButton downloadButton = new RadioButton("下载", Icons.DOWNLOAD);
-        RadioButton settingButton = new RadioButton("设置", Icons.SETTING, 0.48);
-        RadioButton moreButton = new RadioButton("更多", Icons.MORE);
+        PCLRadioButton launchButton = new PCLRadioButton("启动", Icons.POWER);
+        PCLRadioButton downloadButton = new PCLRadioButton("下载", Icons.DOWNLOAD);
+        PCLRadioButton settingButton = new PCLRadioButton("设置", Icons.SETTING, 0.48);
+        PCLRadioButton moreButton = new PCLRadioButton("更多", Icons.MORE);
 
         launchButton.setToggleGroup(group);
         downloadButton.setToggleGroup(group);
@@ -85,19 +86,20 @@ public class TitleBar extends BorderPane {
         return nav;
     }
 
-    private SVGPath createLogo() {
-        SVGPath logo = new SVGPath();
-        logo.setContent(Icons.PCL.pathData);
-        logo.setFill(Color.TRANSPARENT);
-        logo.setStroke(Color.WHITE);
-        logo.setStrokeWidth(3);
+    private StackPane createLogo() {
+        StackPane logo = (StackPane) Icons.PCL.toNode(14);
+        SVGPath logoSvg = (SVGPath) logo.getChildren().getFirst();
+        logoSvg.setContent(Icons.PCL.pathData);
+        logoSvg.setFill(Color.TRANSPARENT);
+        logoSvg.setStroke(Color.WHITE);
+        logoSvg.setStrokeWidth(3);
         return logo;
     }
 
-    private IconButton[] createControls() {
-        IconButton[] buttons = new IconButton[2];
-        buttons[0] = new IconButton(Icons.MIN.pathData);
-        buttons[1] = new IconButton(Icons.CLOSE.pathData);
+    private PCLIconButton[] createControls() {
+        PCLIconButton[] buttons = new PCLIconButton[2];
+        buttons[0] = new PCLIconButton(Icons.MIN.pathData);
+        buttons[1] = new PCLIconButton(Icons.CLOSE.pathData);
 
         buttons[0].setOnAction(event -> stage.setIconified(true));
         buttons[1].setOnAction(event -> stage.close());
